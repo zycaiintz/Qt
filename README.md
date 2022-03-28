@@ -22,21 +22,25 @@
 
 - 滑块条不显示或者满格
 - 滑块不显示
-- 滑块不跟鼠标（比较调皮有自己的想法）
+- 滑块不跟鼠标
 
-【图片】
+经过一番Google之后，发现还是有零星几个网友发现了类似的问题。也许是mac系统实在是小众，相关的资料确实是少
 
-经过一番Google之后，发现还是有零星几个网友发现了类似的问题。也许是mac系统实在是小众，相关的资料确实是少得可怜
+但这些许的资料确实带给我不少启发，其中就有一个描述QSlider在Monterey下的异常现象，让我看清了BUG的真面目
 
-但这些许的资料确实带给我不少启发，其中就有一个描述QSlider在Monterey下的异常现象，让我看清了BUG的真面目（原网址见***）
+> [QSlider is broken in MacOS Monterey](https://bugreports.qt.io/browse/QTBUG-98093)
+>
+> [QSlider tickPosition not working on macOS](https://bugreports.qt.io/browse/QTBUG-98903)
+> 
+> [QSlider fail to repaint on macOS Monterey](https://bugreports.qt.io/browse/QTBUG-96522)
 
 <video src=".\Vedio\slider_bug1.mov"></video>
 
-<center>BUG1-滑块不跟手</center>
+<center>BUG1-滑块不跟手(.\Vedio\slider_bug1.mov)</center>
 
 <video src=".\Vedio\slider_bug2.mov"></video>
 
-<center>BUG2-滑块之间互相影响</center>
+<center>BUG2-滑块之间互相影响(.\Vedio\slider_bug2.mov)</center>
 
 特别是BUG2，让我想到了客户描述的滑块消失或满格，也许正是这个原因造成的，滑块其实被移动到了两侧之外，在我们看来如同消失一般
 
@@ -198,9 +202,7 @@ int main(int argc, char *argv[]) {
 
 #### 2.4 Qt Style Sheets
 
-解决问题最快的办法还是到网上找相似的代码，我在搜寻各类帖子，尝试寻找有无重写paintEvent来解决这个问题的代码
-
-最终还是被我找到了
+解决问题最快的办法还是到网上找相似的代码，我在搜寻各类帖子，尝试寻找有无重写paintEvent来解决这个问题的代码.最终还是被我找到了
 
 > [QSlider in QT misbehaves in new MacOS](https://stackoverflow.com/questions/69890284/qslider-in-qt-misbehaves-in-new-macos-monterey-v12-0-1-any-workaround)
 
